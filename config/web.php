@@ -66,6 +66,8 @@ $config = [
                 /* route config */
                 'GET config' => 'config/index',
                 'POST config' => 'config/create',
+                'PUT,PATCH config/<id:\d+>' => 'config/update',
+                'DELETE config/<id:\d+>' => 'config/delete',
 
 
                 // ['class' => 'yii\rest\UrlRule', 'controller' => 'user',],

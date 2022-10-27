@@ -1,6 +1,7 @@
 <?php
 namespace app\common\components;
 
+use app\models\Config;
 use Yii;
 use yii\web\HttpException;
 
@@ -47,5 +48,13 @@ class Helpers {
         } catch (\Throwable $th) {
             throw new HttpException(401, "Token tidak valid");
         }
+    }
+
+
+    static function config($key) {
+
+        $data = Config::find()->where(['key' => $key])->one() ?? (object) ['value' => null];
+
+        return $data->value;
     }
 }

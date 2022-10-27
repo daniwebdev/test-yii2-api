@@ -19,12 +19,6 @@ class UserController extends BaseController
 
                 'class' => TokenValidationFilter::class,
 
-                // 'actions' => [
-
-                //     'delete' => ['post'],
-
-                // ],
-
             ],
 
         ]);
@@ -40,19 +34,23 @@ class UserController extends BaseController
 
 
     public function actionUpdate($id) {
-
-        $body       =  Yii::$app->getRequest()->getBodyParams();
-
-        $model      = User::find($id)->one();
-
-        foreach($body as $key => $value) {
-            $model->$key = $value;
+        try {
+            $body       =  Yii::$app->getRequest()->getBodyParams();
+    
+            $model      = User::find($id)->one();
+    
+            foreach($body as $key => $value) {
+                $model->$key = $value;
+            }
+    
+            $model->update();
+    
+    
+            return $this->responseSuccess($model);
+        } catch (\Throwable $th) {
+            return $this->responseError($th->getMessage(), [], $th->getCode() ? $th->getCode():500);
         }
 
-        $model->update();
-
-
-        return $this->responseSuccess($model);
     }
 
     public function actionCreate() {
@@ -81,8 +79,11 @@ class UserController extends BaseController
 
             return $this->responseSuccess([$model]);
         } catch (HttpException $th) {
+            
             return $this->responseError($th->getMessage(), [], $th->statusCode);
 
+        } catch (\Throwable $th) {
+            return $this->responseError($th->getMessage(), [], $th->getCode() ? $th->getCode():500);
         }
     }
 
@@ -93,7 +94,6 @@ class UserController extends BaseController
             $user       = User::find()->where(['id' => $id]);
 
             if(!$user->count()) {
-    
                 return $this->responseError("User tidak ditemukan", [], 404);
             }
     
@@ -103,7 +103,7 @@ class UserController extends BaseController
     
         } catch (\Throwable $th) {
 
-            return $this->responseError($th->getMessage(), [], $th->getCode());
+            return $this->responseError($th->getMessage(), [], $th->getCode() ? $th->getCode():500);
         }
 
     }

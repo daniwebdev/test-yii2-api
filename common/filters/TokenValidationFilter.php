@@ -3,8 +3,10 @@ namespace app\common\filters;
 
 use app\common\components\Helpers;
 use app\models\User;
+use Exception;
 use Yii;
 use yii\base\ActionFilter;
+use yii\web\HttpException;
 
 class TokenValidationFilter extends ActionFilter {
 
@@ -18,12 +20,14 @@ class TokenValidationFilter extends ActionFilter {
         $authorization = str_replace("Bearer ", "", $headers['authorization']);
         $decode = Helpers::decodeToken($authorization);
 
-        /* cachable ----------------------------------------------- */
         /* bisa di cache untuk meringankan beban                    */
-        $dataUser = User::find($decode['id'])->one()->toArray();    //
-        /* end cachable ------------------------------------------- */
+        $dataUser = User::find($decode['id'])->one();    //
+        // $app->params['user_data'] = $dataUser;
 
-        $app->params['user_data'] = $dataUser;
+        if($dataUser == null) {
+            throw new HttpException(401, "Token tidak valid");
+        }
+
 
         return parent::beforeAction($action);
     }
