@@ -1,5 +1,5 @@
 # DOKUMENTASI POSTMAN 
-[https://www.getpostman.com/collections/7b4fd5ebbeddea2f9408](https://www.getpostman.com/collections/7b4fd5ebbeddea2f9408)
+[Postman](https://www.postman.com/orange-rocket-3639/workspace/test/collection/3836131-13ae950d-23cf-4cad-864b-f881675d9396)
 
 
 # YII2
