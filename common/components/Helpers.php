@@ -9,17 +9,11 @@ class Helpers {
 
     static $key = '123abc';
 
-    static function createToken($data, $expired=60*60*24) {
+    static function createToken($payload, $expired=60*60*24) {
         
-        $data = base64_encode(gzcompress(time()+$expired.'|||'.serialize($data), 9));
+        $data = base64_encode(gzcompress(time()+$expired.'|||'.serialize($payload), 9));
 
         $hash = base64_encode(Yii::$app->getSecurity()->generatePasswordHash(self::$key.$data)).'.'.$data;
-
-        // $decode = gzuncompress(base64_decode($data));
-        // $split = explode('|', $decode);
-
-        // $expiredAt = $split[0];
-        // $data = unserialize($split[1]);
 
         return $hash;
     }
@@ -33,7 +27,6 @@ class Helpers {
             if(!Yii::$app->getSecurity()->validatePassword(self::$key.$dataencoded, $hash)) {
                 throw new HttpException(401, "Token tidak valid");
             }
-    
     
             $decodeSplit = explode('|||', gzuncompress(base64_decode($dataencoded)));
     
