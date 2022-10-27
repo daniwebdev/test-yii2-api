@@ -1,9 +1,8 @@
 <?php
-namespace app\common\filters;
+namespace app\api\filters;
 
-use app\common\components\Helpers;
-use app\models\User;
-use Exception;
+use app\api\components\Helpers;
+use app\api\models\User;
 use Yii;
 use yii\base\ActionFilter;
 use yii\web\HttpException;

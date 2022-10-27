@@ -52,22 +52,29 @@ $config = [
             'enableStrictParsing' => true,
             'rules' => [
 
+                /* ROUTE CMS */
+                "" => 'auth/login',
+                "GET user" => 'user/index',
+
+
+                /* ROUTE API */
+
                 /* route authentication */
-                'POST auth/login'    => 'auth/login',       // AuthController@actionLogin
-                'POST auth/register' => 'auth/register',
+                'POST api/auth/login'         => 'api/auth/login',       // AuthController@actionLogin
+                'POST api/auth/register'      => 'api/auth/register',
 
                 /* route users */
-                'POST user' => 'user/create',
-                'GET user'  => 'user/index',
-                'GET user/<id:\d+>' => 'user/view',
-                'PUT,PATCH user/<id:\d+>' => 'user/update',
-                'DELETE user/<id:\d+>' => 'user/delete',
+                'POST api/user'               => 'api/user/create',
+                'GET api/user'                => 'api/user/index',
+                'GET api/user/<id:\d+>'       => 'api/user/view',
+                'PUT,PATCH api/user/<id:\d+>' => 'api/user/update',
+                'DELETE api/user/<id:\d+>'    => 'api/user/delete',
 
                 /* route config */
-                'GET config' => 'config/index',
-                'POST config' => 'config/create',
-                'PUT,PATCH config/<id:\d+>' => 'config/update',
-                'DELETE config/<id:\d+>' => 'config/delete',
+                'GET api/config'                => 'api/config/index',
+                'POST api/config'               => 'api/config/create',
+                'PUT,PATCH api/config/<id:\d+>' => 'api/config/update',
+                'DELETE api/config/<id:\d+>'    => 'api/config/delete',
 
 
                 // ['class' => 'yii\rest\UrlRule', 'controller' => 'user',],
@@ -77,6 +84,12 @@ $config = [
        
     ],
     'params' => $params,
+];
+
+$config['modules'] = [
+    'api' => [
+        'class' => 'app\api\Module'
+    ]
 ];
 
 if (YII_ENV_DEV) {

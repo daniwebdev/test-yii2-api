@@ -1,9 +1,9 @@
 <?php
 
-namespace app\controllers;
+namespace app\api\controllers;
 
-use app\common\filters\TokenValidationFilter;
-use app\models\Config;
+use app\api\filters\TokenValidationFilter;
+use app\api\models\Config;
 use Yii;
 use yii\helpers\ArrayHelper;
 

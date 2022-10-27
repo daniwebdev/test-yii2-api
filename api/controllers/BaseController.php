@@ -1,5 +1,5 @@
 <?php
-namespace app\controllers;
+namespace app\api\controllers;
 
 use Yii;
 
@@ -18,7 +18,7 @@ class BaseController extends \yii\rest\Controller {
 
     protected function responseError($message, $details, $code=null) {
 
-        if(!is_null($code)) {
+        if(!is_null($code) && $code <= 500 && $code >= 400) {
             Yii::$app->response->statusCode = $code;
         }
 

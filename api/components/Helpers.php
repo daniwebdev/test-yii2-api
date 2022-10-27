@@ -1,7 +1,7 @@
 <?php
-namespace app\common\components;
+namespace app\api\components;
 
-use app\models\Config;
+use app\api\models\Config;
 use Yii;
 use yii\web\HttpException;
 
