@@ -40,7 +40,7 @@
                             <td><input class="form-control" name="value" value="${item.value}"></td>
                             <td>
                                 <button class="btn btn-primary">S</button>
-                                <button class="btn btn-danger">D</button>
+                                <button class="btn btn-danger" data-id="${item.id}">D</button>
                             </td>
                         </tr>
                     `);
