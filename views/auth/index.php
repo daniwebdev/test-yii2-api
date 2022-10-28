@@ -26,6 +26,9 @@
 
 <script>
     window.onload = () => {
+        if(localStorage.token) {
+            location.href = location.origin+'/user'
+        }
         $('#btn-login').on('click', function() {
 
             let email = $('#email').val();
