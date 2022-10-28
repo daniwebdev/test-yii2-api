@@ -1,6 +1,12 @@
 # DOKUMENTASI POSTMAN 
 [Postman](https://www.postman.com/orange-rocket-3639/workspace/test/collection/3836131-13ae950d-23cf-4cad-864b-f881675d9396)
 
+## Screenshot
+
+![alt](./s1.png)
+![alt](./s2.png)
+![alt](./s3.png)
+
 
 # YII2
 <p align="center">

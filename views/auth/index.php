@@ -25,14 +25,19 @@
 </div>
 
 <script>
-    window.onload = () => {
+    window.onload = function()  {
         if(localStorage.token) {
             location.href = location.origin+'/user'
         }
-        $('#btn-login').on('click', function() {
+
+        alert('');
+
+        $(document).on('click', '#btn-login', function() {
 
             let email = $('#email').val();
             let password = $('#password').val();
+
+            console.log(email, password)
 
             $.ajax({
                 data : JSON.stringify({
