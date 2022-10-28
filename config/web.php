@@ -55,6 +55,7 @@ $config = [
                 /* ROUTE CMS */
                 "" => 'auth/login',
                 "GET user" => 'user/index',
+                "GET config" => 'user/config',
 
 
                 /* ROUTE API */

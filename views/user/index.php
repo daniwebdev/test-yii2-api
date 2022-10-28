@@ -4,7 +4,7 @@
 
 
 <div class="container">
-    <button class="btn btn-primary my-4" data-bs-toggle="modal" data-bs-target="#modalId" type="button">Buat</button>
+    <button class="btn btn-primary my-4" data-bs-toggle="modal" data-bs-target="#modalId" type="button">Add</button>
     <table class="table table-striped table-bordered">
         <thead>
             <tr>
@@ -98,7 +98,7 @@
                             </td>
                             <td class="text-center">
                                 <button class="btn btn-primary">Update</button>
-                                <button class="btn btn-danger">Delete</button>
+                                <button data-id="${i.id}" class="btn btn-danger delete">Delete</button>
                             </td>
                         </tr>
                     `);
@@ -136,6 +136,26 @@
                     load_data();
                 }
             })
+        });
+
+
+        $(document).on('click', '.delete', function() {
+            let c = confirm("Anda yakin ?");
+            let id = $(this).data('id');
+
+            if(c) {
+                $.ajax({
+                    method: "DELETE",
+                    url: '/api/user/'+id,
+                    headers: {
+                        "Authorization": "Bearer "+localStorage.getItem('token')
+                    },
+                    success: function(re) {
+                        load_data(); 
+                        alert("Berhasil");
+                    }
+                })
+            }
         })
 
     }

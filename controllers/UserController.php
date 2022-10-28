@@ -13,4 +13,10 @@ class UserController extends \yii\web\Controller
     }
 
 
+    public function actionConfig() {
+        return $this->render('config');
+
+    }
+
+
 }
